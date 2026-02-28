@@ -3,88 +3,75 @@ import json
 from datetime import datetime
 
 url = 'https://api.hh.ru/vacancies'
+params = {'area': '2', 'text': 'python developer', 'per_page': '7', 'period': '30'}
 
-headers = {'User-Agent': 'Mozilla/5.0'}
+response = requests.get(url, headers={'User-Agent': 'Mozilla/5.0'}, params=params)
 
-params = {
-    'area': '2', 
-    'text': 'python developer',  
-    'per_page': '20',  
-    'period': '30', 
+if response.status_code != 200:
+    print(f"Ошибка: {response.status_code}")
+    exit()
+
+data = response.json()
+vacancies = data.get('items', [])
+
+print(f"НАЙДЕНО ВАКАНСИЙ: {data.get('found', 0)}, ПОКАЗАНО: {len(vacancies)}")
+
+parsed_vacancies = []
+
+for i, v in enumerate(vacancies, 1):
+    s = v.get('salary')
+    if s:
+        from_ = s.get('from')
+        to_ = s.get('to')
+        cur = s.get('currency', 'RUR')
+        if from_ and to_:
+            salary = f"от {from_} до {to_} {cur}"
+        elif from_:
+            salary = f"от {from_} {cur}"
+        elif to_:
+            salary = f"до {to_} {cur}"
+        else:
+            salary = "Не указана"
+    else:
+        salary = "Не указана"
+    
+    vacancy_data = {
+        'id': v.get('id'),
+        'name': v['name'],
+        'company': v['employer']['name'],
+        'city': v['area']['name'],
+        'salary': salary,
+        'experience': v['experience']['name'],
+        'employment': v['employment']['name'],
+        'schedule': v['schedule']['name'],
+        'url': v['alternate_url']
+    }
+    parsed_vacancies.append(vacancy_data)
+    
+    print(f"ВАКАНСИЯ №{i}")
+    print(f"   Должность: {v['name']}")
+    print(f"   Компания: {v['employer']['name']}")
+    print(f"   Город: {v['area']['name']}")
+    print(f"   Зарплата: {salary}")
+    print(f"   Опыт: {v['experience']['name']}")
+    print(f"   Тип занятости: {v['employment']['name']}")
+    print(f"   График: {v['schedule']['name']}")
+    print(f"   Ссылка: {v['alternate_url']}")
+
+
+output_data = {
+    'search_params': {
+        'area': 'Санкт-Петербург',
+        'query': params['text'],
+        'period': f"{params['period']} дней",
+        'total_found': data.get('found', 0)
+    },
+    'vacancies': parsed_vacancies,
+    'parsed_at': datetime.now().strftime('%d.%m.%Y %H:%M:%S')
 }
 
-response = requests.get(url, headers=headers, params=params)
+filename = f"spb_python_vacancies_{datetime.now().strftime('%Y%m%d_%H%M')}.json"
+with open(filename, 'w', encoding='utf-8') as f:
+    json.dump(output_data, f, ensure_ascii=False, indent=2)
 
-if response.status_code == 200:
-    data = response.json()
-    vacancies = data.get('items', [])
-    
-    print(f"Найдено вакансий: {data.get('found', 0)}")
-    print(f"Показано: {len(vacancies)}")
-    
-    parsed_vacancies = []
-    
-    for i, v in enumerate(vacancies, 1):
-        salary_info = v.get('salary')
-        if salary_info:
-            salary_from = salary_info.get('from')
-            salary_to = salary_info.get('to')
-            salary_currency = salary_info.get('currency', 'RUR')
-            
-            if salary_from and salary_to:
-                salary_text = f"{salary_from} - {salary_to} {salary_currency}"
-            elif salary_from:
-                salary_text = f"от {salary_from} {salary_currency}"
-            elif salary_to:
-                salary_text = f"до {salary_to} {salary_currency}"
-            else:
-                salary_text = "Не указана"
-        else:
-            salary_text = "Не указана"
-        
-
-        vacancy_data = {
-            'id': v.get('id'),
-            'name': v.get('name'),
-            'company': v.get('employer', {}).get('name'),
-            'company_url': v.get('employer', {}).get('alternate_url'),
-            'city': v.get('area', {}).get('name'),
-            'salary': salary_text,
-            'experience': v.get('experience', {}).get('name'),
-            'employment': v.get('employment', {}).get('name'),
-            'schedule': v.get('schedule', {}).get('name'),
-            'description': v.get('snippet', {}).get('responsibility'),
-            'requirements': v.get('snippet', {}).get('requirement'),
-            'url': v.get('alternate_url')
-        }
-        
-        parsed_vacancies.append(vacancy_data)
-        
-        print(f"\n{i}. {v['name']}")
-        print(f"{v['employer']['name']}")
-        print(f"Зарплата {salary_text}")
-        print(f"{v['area']['name']}")
-        print(f"Опыт{v['experience']['name']}")
-        print(f"{v['alternate_url']}")
-    
-
-    output_data = {
-        'search_params': {
-            'area': 'Санкт-Петербург',
-            'query': params['text'],
-            'period': f"{params['period']} дней",
-            'total_found': data.get('found', 0)
-        },
-        'vacancies': parsed_vacancies,
-        'parsed_at': datetime.now().strftime('%d.%m.%Y %H:%M:%S')
-    }
-    
-    filename = f"spb_python_vacancies_{datetime.now().strftime('%Y%m%d_%H%M')}.json"
-    with open(filename, 'w', encoding='utf-8') as f:
-        json.dump(output_data, f, ensure_ascii=False, indent=2)
-    
-    print(f" Данные сохранены в файл: {filename}")
-    print(f" Всего обработано вакансий: {len(parsed_vacancies)}")
-    
-else:
-    print(f" Ошибка: {response.status_code}")
+print(f" Данные сохранены в файл: {filename}")
