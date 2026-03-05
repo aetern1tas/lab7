@@ -1,9 +1,8 @@
 import requests
 import json
-from datetime import datetime
 
 URL = 'https://api.hh.ru/vacancies'
-HEADERS = {'User-Agent': 'Mozilla/5.0'}
+HEADERS = {'User-Agent': 'LearningApi'}
 PARAMS = {
     'area': '2',
     'text': 'python developer',
@@ -34,7 +33,7 @@ def main():
     response = requests.get(URL, headers=HEADERS, params=PARAMS)
 
     if response.status_code != 200:
-        print(f"Ошибка: {response.status_code}")
+        print(f"Ошибка {response.status_code}")
         return
 
     data = response.json()
@@ -71,7 +70,7 @@ def main():
 
     output_data = {
         'search_params': {
-            'area': 'Санкт-Петербург',
+            'area': "Санкт-Петербург",
             'query': PARAMS['text'],
             'period': f"{PARAMS['period']} дней",
             'total_found': total_found
@@ -83,7 +82,6 @@ def main():
     with open(filename, 'w', encoding='utf-8') as f:
         json.dump(output_data, f, ensure_ascii=False, indent=2)
 
-    print(f"Данные сохранены в файл: {filename}")
 
 
 if __name__ == "__main__":

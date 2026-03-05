@@ -1,0 +1,80 @@
+{
+  "search_params": {
+    "area": "Санкт-Петербург",
+    "query": "python developer",
+    "period": "30 дней",
+    "total_found": 691
+  },
+  "vacancies": [
+    {
+      "id": "130922274",
+      "name": "Junior Python-разработчик",
+      "company": "SberTech",
+      "city": "Санкт-Петербург",
+      "salary": "до 130000 RUR",
+      "experience": "Нет опыта",
+      "employment": "Полная занятость",
+      "url": "https://hh.ru/vacancy/130922274"
+    },
+    {
+      "id": "130686152",
+      "name": "Инженер по качеству (QA)",
+      "company": "Возовоз",
+      "city": "Санкт-Петербург",
+      "salary": "от 120000 RUR",
+      "experience": "От 1 года до 3 лет",
+      "employment": "Полная занятость",
+      "url": "https://hh.ru/vacancy/130686152"
+    },
+    {
+      "id": "130972916",
+      "name": "Python-разработчик",
+      "company": "Neoflex",
+      "city": "Санкт-Петербург",
+      "salary": "Не указана",
+      "experience": "От 1 года до 3 лет",
+      "employment": "Полная занятость",
+      "url": "https://hh.ru/vacancy/130972916"
+    },
+    {
+      "id": "130930511",
+      "name": "Junior+ Python/Go разработчик",
+      "company": "Виста",
+      "city": "Санкт-Петербург",
+      "salary": "от 70000 до 110000 RUR",
+      "experience": "От 1 года до 3 лет",
+      "employment": "Полная занятость",
+      "url": "https://hh.ru/vacancy/130930511"
+    },
+    {
+      "id": "130826966",
+      "name": "Тестировщик ПО (QA-инженер)",
+      "company": "3snet",
+      "city": "Санкт-Петербург",
+      "salary": "от 100000 до 140000 RUR",
+      "experience": "От 1 года до 3 лет",
+      "employment": "Полная занятость",
+      "url": "https://hh.ru/vacancy/130826966"
+    },
+    {
+      "id": "130880256",
+      "name": "Backend developer (Golang)",
+      "company": "Манзони",
+      "city": "Санкт-Петербург",
+      "salary": "Не указана",
+      "experience": "От 3 до 6 лет",
+      "employment": "Полная занятость",
+      "url": "https://hh.ru/vacancy/130880256"
+    },
+    {
+      "id": "130818480",
+      "name": "Java Developer / Разработчик на Java (backend)",
+      "company": "НЕОС",
+      "city": "Санкт-Петербург",
+      "salary": "Не указана",
+      "experience": "От 1 года до 3 лет",
+      "employment": "Полная занятость",
+      "url": "https://hh.ru/vacancy/130818480"
+    }
+  ]
+}

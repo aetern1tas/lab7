@@ -13,12 +13,11 @@ def get_random_neko():
     image_url = data['results'][0]['url']
     
     img_response = requests.get(image_url)
-    img_response.raise_for_status()
     
     img_bytes = BytesIO(img_response.content)
     pil_image = Image.open(img_bytes)
     
-    pil_image.thumbnail((500, 500), Image.Resampling.LANCZOS)
+    pil_image.thumbnail((500, 500))
     
     return ImageTk.PhotoImage(pil_image)
 
