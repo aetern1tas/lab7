@@ -3,9 +3,19 @@
     "area": "Санкт-Петербург",
     "query": "python developer",
     "period": "30 дней",
-    "total_found": 691
+    "total_found": 698
   },
   "vacancies": [
+    {
+      "id": "130972916",
+      "name": "Python-разработчик",
+      "company": "Neoflex",
+      "city": "Санкт-Петербург",
+      "salary": "Не указана",
+      "experience": "От 1 года до 3 лет",
+      "employment": "Полная занятость",
+      "url": "https://hh.ru/vacancy/130972916"
+    },
     {
       "id": "130922274",
       "name": "Junior Python-разработчик",
@@ -27,14 +37,14 @@
       "url": "https://hh.ru/vacancy/130686152"
     },
     {
-      "id": "130972916",
-      "name": "Python-разработчик",
-      "company": "Neoflex",
+      "id": "130995758",
+      "name": "Middle Go разработчик",
+      "company": "GS Labs",
       "city": "Санкт-Петербург",
       "salary": "Не указана",
       "experience": "От 1 года до 3 лет",
       "employment": "Полная занятость",
-      "url": "https://hh.ru/vacancy/130972916"
+      "url": "https://hh.ru/vacancy/130995758"
     },
     {
       "id": "130930511",
@@ -65,16 +75,6 @@
       "experience": "От 3 до 6 лет",
       "employment": "Полная занятость",
       "url": "https://hh.ru/vacancy/130880256"
-    },
-    {
-      "id": "130818480",
-      "name": "Java Developer / Разработчик на Java (backend)",
-      "company": "НЕОС",
-      "city": "Санкт-Петербург",
-      "salary": "Не указана",
-      "experience": "От 1 года до 3 лет",
-      "employment": "Полная занятость",
-      "url": "https://hh.ru/vacancy/130818480"
     }
   ]
 }

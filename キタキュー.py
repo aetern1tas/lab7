@@ -1,7 +1,8 @@
 import requests
 import json
+import os
 
-API_KEY = "e14f02a8d29b96ea81dd10b4297c831b"
+API_KEY = os.getenv('MY_API_KEY')
 
 def get_weather_kitakyushu(api_key):
 
